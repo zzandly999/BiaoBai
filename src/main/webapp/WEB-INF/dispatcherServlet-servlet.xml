@@ -15,12 +15,12 @@
 
 	<!--配置视图解析器，方便页面返回  -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="prefix" value="/u/v1/"></property>
 		<property name="suffix" value=".jsp"></property>
 		<property name="order" value="0"></property>
 	</bean>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/topic"></property>
+		<property name="prefix" value="/u/v1/topic"></property>
 		<property name="suffix" value=".jsp"></property>
 		<property name="order" value="1"></property>
 	</bean>

@@ -137,7 +137,7 @@
                         <div class="caption">
                             <h3>${comments.type}</h3>
                             <p>${comments.comment}</p>
-                            <p><a href="${comments.url}" class="btn btn-primary" role="button">详情</a> <a href="" class="btn btn-default" role="button">分享</a></p>
+                            <p><a href="${comments.url}" class="btn btn-primary" role="button" id="show_messege">详情</a> <a href="" class="btn btn-default" role="button" onclick="toShare()">分享</a></p>
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,10 @@
 
     //分享
     function toShare() {
-        alert("复制此 "+"http://localhost:8080/loseThing"+" 链接以分享");
+        var href = $("#show_messege").attr('href');
+        var url = "http://localhost:8080" + href;
+        alert("复制此 "+url+" 链接以分享");
+        $("#show_messege").removeAttr();
     }
 
 
