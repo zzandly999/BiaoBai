@@ -17,6 +17,7 @@
 
 
     <build>
+        <finalName>demo3</finalName>
         <plugins>
 
             <!-- tomcat插件控制 -->
