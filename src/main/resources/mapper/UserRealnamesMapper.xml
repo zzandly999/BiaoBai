@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atzz.mine.mapper.UserRealnamesMapper">
+  <resultMap id="BaseResultMap" type="com.atzz.mine.bean.UserRealnames">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt" />
+    <result column="student_number" jdbcType="CHAR" property="studentNumber" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="academy" jdbcType="VARCHAR" property="academy" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="dormitory_floor_number" jdbcType="VARCHAR" property="dormitoryFloorNumber" />
+    <result column="dormitory_number" jdbcType="VARCHAR" property="dormitoryNumber" />
+    <result column="user_register_id" jdbcType="BIGINT" property="userRegisterId" />
+    <result column="teacher_id" jdbcType="BIGINT" property="teacherId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.atzz.mine.bean.UserRealnames">
+    <result column="type:varchar(20)" jdbcType="LONGVARCHAR" property="type:varchar(20)" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, create_time, update_time, deleted_at, student_number, school, real_name, academy, 
+    age, teacher_name, dormitory_floor_number, dormitory_number, user_register_id, teacher_id
+  </sql>
+  <sql id="Blob_Column_List">
+    type:varchar(20)
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.atzz.mine.bean.UserRealnamesExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_realnames
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.atzz.mine.bean.UserRealnamesExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_realnames
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_realnames
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_realnames
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atzz.mine.bean.UserRealnamesExample">
+    delete from user_realnames
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atzz.mine.bean.UserRealnames">
+    insert into user_realnames (id, create_time, update_time, 
+      deleted_at, student_number, school, 
+      real_name, academy, age, 
+      teacher_name, dormitory_floor_number, dormitory_number, 
+      user_register_id, teacher_id, type:varchar(20)
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{studentNumber,jdbcType=CHAR}, #{school,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{academy,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, 
+      #{teacherName,jdbcType=VARCHAR}, #{dormitoryFloorNumber,jdbcType=VARCHAR}, #{dormitoryNumber,jdbcType=VARCHAR}, 
+      #{userRegisterId,jdbcType=BIGINT}, #{teacherId,jdbcType=BIGINT}, #{type:varchar(20),jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.atzz.mine.bean.UserRealnames">
+    insert into user_realnames
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deletedAt != null">
+        deleted_at,
+      </if>
+      <if test="studentNumber != null">
+        student_number,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="academy != null">
+        academy,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="teacherName != null">
+        teacher_name,
+      </if>
+      <if test="dormitoryFloorNumber != null">
+        dormitory_floor_number,
+      </if>
+      <if test="dormitoryNumber != null">
+        dormitory_number,
+      </if>
+      <if test="userRegisterId != null">
+        user_register_id,
+      </if>
+      <if test="teacherId != null">
+        teacher_id,
+      </if>
+      <if test="type:varchar(20) != null">
+        type:varchar(20),
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null">
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="studentNumber != null">
+        #{studentNumber,jdbcType=CHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="academy != null">
+        #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="dormitoryFloorNumber != null">
+        #{dormitoryFloorNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dormitoryNumber != null">
+        #{dormitoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegisterId != null">
+        #{userRegisterId,jdbcType=BIGINT},
+      </if>
+      <if test="teacherId != null">
+        #{teacherId,jdbcType=BIGINT},
+      </if>
+      <if test="type:varchar(20) != null">
+        #{type:varchar(20),jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atzz.mine.bean.UserRealnamesExample" resultType="java.lang.Long">
+    select count(*) from user_realnames
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_realnames
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null">
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.studentNumber != null">
+        student_number = #{record.studentNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.school != null">
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null">
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academy != null">
+        academy = #{record.academy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherName != null">
+        teacher_name = #{record.teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dormitoryFloorNumber != null">
+        dormitory_floor_number = #{record.dormitoryFloorNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dormitoryNumber != null">
+        dormitory_number = #{record.dormitoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userRegisterId != null">
+        user_register_id = #{record.userRegisterId,jdbcType=BIGINT},
+      </if>
+      <if test="record.teacherId != null">
+        teacher_id = #{record.teacherId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type:varchar(20) != null">
+        type:varchar(20) = #{record.type:varchar(20),jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update user_realnames
+    set id = #{record.id,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      student_number = #{record.studentNumber,jdbcType=CHAR},
+      school = #{record.school,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      academy = #{record.academy,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=VARCHAR},
+      teacher_name = #{record.teacherName,jdbcType=VARCHAR},
+      dormitory_floor_number = #{record.dormitoryFloorNumber,jdbcType=VARCHAR},
+      dormitory_number = #{record.dormitoryNumber,jdbcType=VARCHAR},
+      user_register_id = #{record.userRegisterId,jdbcType=BIGINT},
+      teacher_id = #{record.teacherId,jdbcType=BIGINT},
+      type:varchar(20) = #{record.type:varchar(20),jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_realnames
+    set id = #{record.id,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      student_number = #{record.studentNumber,jdbcType=CHAR},
+      school = #{record.school,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      academy = #{record.academy,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=VARCHAR},
+      teacher_name = #{record.teacherName,jdbcType=VARCHAR},
+      dormitory_floor_number = #{record.dormitoryFloorNumber,jdbcType=VARCHAR},
+      dormitory_number = #{record.dormitoryNumber,jdbcType=VARCHAR},
+      user_register_id = #{record.userRegisterId,jdbcType=BIGINT},
+      teacher_id = #{record.teacherId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atzz.mine.bean.UserRealnames">
+    update user_realnames
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null">
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="studentNumber != null">
+        student_number = #{studentNumber,jdbcType=CHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="academy != null">
+        academy = #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="dormitoryFloorNumber != null">
+        dormitory_floor_number = #{dormitoryFloorNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dormitoryNumber != null">
+        dormitory_number = #{dormitoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegisterId != null">
+        user_register_id = #{userRegisterId,jdbcType=BIGINT},
+      </if>
+      <if test="teacherId != null">
+        teacher_id = #{teacherId,jdbcType=BIGINT},
+      </if>
+      <if test="type:varchar(20) != null">
+        type:varchar(20) = #{type:varchar(20),jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.atzz.mine.bean.UserRealnames">
+    update user_realnames
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      student_number = #{studentNumber,jdbcType=CHAR},
+      school = #{school,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      academy = #{academy,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      dormitory_floor_number = #{dormitoryFloorNumber,jdbcType=VARCHAR},
+      dormitory_number = #{dormitoryNumber,jdbcType=VARCHAR},
+      user_register_id = #{userRegisterId,jdbcType=BIGINT},
+      teacher_id = #{teacherId,jdbcType=BIGINT},
+      type:varchar(20) = #{type:varchar(20),jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atzz.mine.bean.UserRealnames">
+    update user_realnames
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      student_number = #{studentNumber,jdbcType=CHAR},
+      school = #{school,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      academy = #{academy,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      dormitory_floor_number = #{dormitoryFloorNumber,jdbcType=VARCHAR},
+      dormitory_number = #{dormitoryNumber,jdbcType=VARCHAR},
+      user_register_id = #{userRegisterId,jdbcType=BIGINT},
+      teacher_id = #{teacherId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

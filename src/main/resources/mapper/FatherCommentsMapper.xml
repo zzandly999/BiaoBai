@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atzz.mine.mapper.FatherCommentsMapper">
+  <resultMap id="BaseResultMap" type="com.atzz.mine.bean.FatherComments">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt" />
+    <result column="like" jdbcType="BIGINT" property="like" />
+    <result column="un_like" jdbcType="BIGINT" property="unLike" />
+    <result column="number_floor" jdbcType="BIGINT" property="numberFloor" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="report" jdbcType="TINYINT" property="report" />
+    <result column="dynamic_information_id" jdbcType="BIGINT" property="dynamicInformationId" />
+    <result column="user_register_id" jdbcType="BIGINT" property="userRegisterId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, create_time, update_time, deleted_at, like, un_like, number_floor, comment, report, 
+    dynamic_information_id, user_register_id
+  </sql>
+  <select id="selectByExample" parameterType="com.atzz.mine.bean.FatherCommentsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from father_comments
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from father_comments
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from father_comments
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atzz.mine.bean.FatherCommentsExample">
+    delete from father_comments
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atzz.mine.bean.FatherComments">
+    insert into father_comments (id, create_time, update_time, 
+      deleted_at, like, un_like, 
+      number_floor, comment, report, 
+      dynamic_information_id, user_register_id)
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{like,jdbcType=BIGINT}, #{unLike,jdbcType=BIGINT}, 
+      #{numberFloor,jdbcType=BIGINT}, #{comment,jdbcType=VARCHAR}, #{report,jdbcType=TINYINT}, 
+      #{dynamicInformationId,jdbcType=BIGINT}, #{userRegisterId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atzz.mine.bean.FatherComments">
+    insert into father_comments
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deletedAt != null">
+        deleted_at,
+      </if>
+      <if test="like != null">
+        like,
+      </if>
+      <if test="unLike != null">
+        un_like,
+      </if>
+      <if test="numberFloor != null">
+        number_floor,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="report != null">
+        report,
+      </if>
+      <if test="dynamicInformationId != null">
+        dynamic_information_id,
+      </if>
+      <if test="userRegisterId != null">
+        user_register_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null">
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="like != null">
+        #{like,jdbcType=BIGINT},
+      </if>
+      <if test="unLike != null">
+        #{unLike,jdbcType=BIGINT},
+      </if>
+      <if test="numberFloor != null">
+        #{numberFloor,jdbcType=BIGINT},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="report != null">
+        #{report,jdbcType=TINYINT},
+      </if>
+      <if test="dynamicInformationId != null">
+        #{dynamicInformationId,jdbcType=BIGINT},
+      </if>
+      <if test="userRegisterId != null">
+        #{userRegisterId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atzz.mine.bean.FatherCommentsExample" resultType="java.lang.Long">
+    select count(*) from father_comments
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update father_comments
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null">
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.like != null">
+        like = #{record.like,jdbcType=BIGINT},
+      </if>
+      <if test="record.unLike != null">
+        un_like = #{record.unLike,jdbcType=BIGINT},
+      </if>
+      <if test="record.numberFloor != null">
+        number_floor = #{record.numberFloor,jdbcType=BIGINT},
+      </if>
+      <if test="record.comment != null">
+        comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.report != null">
+        report = #{record.report,jdbcType=TINYINT},
+      </if>
+      <if test="record.dynamicInformationId != null">
+        dynamic_information_id = #{record.dynamicInformationId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userRegisterId != null">
+        user_register_id = #{record.userRegisterId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update father_comments
+    set id = #{record.id,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      like = #{record.like,jdbcType=BIGINT},
+      un_like = #{record.unLike,jdbcType=BIGINT},
+      number_floor = #{record.numberFloor,jdbcType=BIGINT},
+      comment = #{record.comment,jdbcType=VARCHAR},
+      report = #{record.report,jdbcType=TINYINT},
+      dynamic_information_id = #{record.dynamicInformationId,jdbcType=BIGINT},
+      user_register_id = #{record.userRegisterId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atzz.mine.bean.FatherComments">
+    update father_comments
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null">
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="like != null">
+        like = #{like,jdbcType=BIGINT},
+      </if>
+      <if test="unLike != null">
+        un_like = #{unLike,jdbcType=BIGINT},
+      </if>
+      <if test="numberFloor != null">
+        number_floor = #{numberFloor,jdbcType=BIGINT},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="report != null">
+        report = #{report,jdbcType=TINYINT},
+      </if>
+      <if test="dynamicInformationId != null">
+        dynamic_information_id = #{dynamicInformationId,jdbcType=BIGINT},
+      </if>
+      <if test="userRegisterId != null">
+        user_register_id = #{userRegisterId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atzz.mine.bean.FatherComments">
+    update father_comments
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      like = #{like,jdbcType=BIGINT},
+      un_like = #{unLike,jdbcType=BIGINT},
+      number_floor = #{numberFloor,jdbcType=BIGINT},
+      comment = #{comment,jdbcType=VARCHAR},
+      report = #{report,jdbcType=TINYINT},
+      dynamic_information_id = #{dynamicInformationId,jdbcType=BIGINT},
+      user_register_id = #{userRegisterId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atzz.mine.mapper.DynamicInformationsMapper">
+  <resultMap id="BaseResultMap" type="com.atzz.mine.bean.DynamicInformations">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt" />
+    <result column="like" jdbcType="BIGINT" property="like" />
+    <result column="un_like" jdbcType="BIGINT" property="unLike" />
+    <result column="number_floor" jdbcType="BIGINT" property="numberFloor" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="is_real" jdbcType="TINYINT" property="isReal" />
+    <result column="admin_id" jdbcType="BIGINT" property="adminId" />
+    <result column="report" jdbcType="TINYINT" property="report" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="user_register_id" jdbcType="BIGINT" property="userRegisterId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, create_time, update_time, deleted_at, `like`, un_like, number_floor, url, `type`,
+    is_real, admin_id, report, comment, cover, user_register_id
+  </sql>
+  <select id="selectByExample" parameterType="com.atzz.mine.bean.DynamicInformationsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dynamic_informations
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dynamic_informations
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dynamic_informations
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atzz.mine.bean.DynamicInformationsExample">
+    delete from dynamic_informations
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atzz.mine.bean.DynamicInformations">
+    insert into dynamic_informations (id, create_time, update_time, 
+      deleted_at, like, un_like, 
+      number_floor, url, type, 
+      is_real, admin_id, report, 
+      comment, cover, user_register_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{like,jdbcType=BIGINT}, #{unLike,jdbcType=BIGINT}, 
+      #{numberFloor,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{isReal,jdbcType=TINYINT}, #{adminId,jdbcType=BIGINT}, #{report,jdbcType=TINYINT}, 
+      #{comment,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, #{userRegisterId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.atzz.mine.bean.DynamicInformations">
+    insert into dynamic_informations
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deletedAt != null">
+        deleted_at,
+      </if>
+      <if test="like != null">
+        like,
+      </if>
+      <if test="unLike != null">
+        un_like,
+      </if>
+      <if test="numberFloor != null">
+        number_floor,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="isReal != null">
+        is_real,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="report != null">
+        report,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="cover != null">
+        cover,
+      </if>
+      <if test="userRegisterId != null">
+        user_register_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null">
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="like != null">
+        #{like,jdbcType=BIGINT},
+      </if>
+      <if test="unLike != null">
+        #{unLike,jdbcType=BIGINT},
+      </if>
+      <if test="numberFloor != null">
+        #{numberFloor,jdbcType=BIGINT},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="isReal != null">
+        #{isReal,jdbcType=TINYINT},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="report != null">
+        #{report,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegisterId != null">
+        #{userRegisterId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atzz.mine.bean.DynamicInformationsExample" resultType="java.lang.Long">
+    select count(*) from dynamic_informations
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dynamic_informations
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null">
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.like != null">
+        like = #{record.like,jdbcType=BIGINT},
+      </if>
+      <if test="record.unLike != null">
+        un_like = #{record.unLike,jdbcType=BIGINT},
+      </if>
+      <if test="record.numberFloor != null">
+        number_floor = #{record.numberFloor,jdbcType=BIGINT},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isReal != null">
+        is_real = #{record.isReal,jdbcType=TINYINT},
+      </if>
+      <if test="record.adminId != null">
+        admin_id = #{record.adminId,jdbcType=BIGINT},
+      </if>
+      <if test="record.report != null">
+        report = #{record.report,jdbcType=TINYINT},
+      </if>
+      <if test="record.comment != null">
+        comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cover != null">
+        cover = #{record.cover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userRegisterId != null">
+        user_register_id = #{record.userRegisterId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dynamic_informations
+    set id = #{record.id,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      like = #{record.like,jdbcType=BIGINT},
+      un_like = #{record.unLike,jdbcType=BIGINT},
+      number_floor = #{record.numberFloor,jdbcType=BIGINT},
+      url = #{record.url,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      is_real = #{record.isReal,jdbcType=TINYINT},
+      admin_id = #{record.adminId,jdbcType=BIGINT},
+      report = #{record.report,jdbcType=TINYINT},
+      comment = #{record.comment,jdbcType=VARCHAR},
+      cover = #{record.cover,jdbcType=VARCHAR},
+      user_register_id = #{record.userRegisterId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atzz.mine.bean.DynamicInformations">
+    update dynamic_informations
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null">
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="like != null">
+        like = #{like,jdbcType=BIGINT},
+      </if>
+      <if test="unLike != null">
+        un_like = #{unLike,jdbcType=BIGINT},
+      </if>
+      <if test="numberFloor != null">
+        number_floor = #{numberFloor,jdbcType=BIGINT},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="isReal != null">
+        is_real = #{isReal,jdbcType=TINYINT},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="report != null">
+        report = #{report,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegisterId != null">
+        user_register_id = #{userRegisterId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atzz.mine.bean.DynamicInformations">
+    update dynamic_informations
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      like = #{like,jdbcType=BIGINT},
+      un_like = #{unLike,jdbcType=BIGINT},
+      number_floor = #{numberFloor,jdbcType=BIGINT},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      is_real = #{isReal,jdbcType=TINYINT},
+      admin_id = #{adminId,jdbcType=BIGINT},
+      report = #{report,jdbcType=TINYINT},
+      comment = #{comment,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      user_register_id = #{userRegisterId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
