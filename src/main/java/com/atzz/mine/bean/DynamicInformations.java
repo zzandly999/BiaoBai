@@ -1,8 +1,10 @@
 package com.atzz.mine.bean;
 
-import java.util.Date;
+import org.springframework.stereotype.Repository;
 
-public class DynamicInformations {
+import java.io.Serializable;
+import java.util.Date;
+public class DynamicInformations implements Serializable {
     private Long id;
 
     private Date createTime;
@@ -150,6 +152,27 @@ public class DynamicInformations {
     }
 
     public void setUserRegisterId(Long userRegisterId) {
+        this.userRegisterId = userRegisterId;
+    }
+
+    public DynamicInformations() {
+    }
+
+    public DynamicInformations(Long id, Date createTime, Date updateTime, Date deletedAt, Long like, Long unLike, Long numberFloor, String url, String type, Byte isReal, Long adminId, Byte report, String comment, String cover, Long userRegisterId) {
+        this.id = id;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.deletedAt = deletedAt;
+        this.like = like;
+        this.unLike = unLike;
+        this.numberFloor = numberFloor;
+        this.url = url;
+        this.type = type;
+        this.isReal = isReal;
+        this.adminId = adminId;
+        this.report = report;
+        this.comment = comment;
+        this.cover = cover;
         this.userRegisterId = userRegisterId;
     }
 }

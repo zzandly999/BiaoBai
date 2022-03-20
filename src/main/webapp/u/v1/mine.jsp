@@ -52,7 +52,7 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
                                 <li><a href="/whoSeeMe">谁看过我</a></li>
-                                <li><a href="/iSee">我看过谁</a></li>
+                                <li><a href="/mySend">我的发布</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">反馈 <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
@@ -68,12 +68,12 @@
                             </ul>
                             <form class="navbar-form navbar-left">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="搜索商品/帖子、等">
+                                    <input type="text" class="form-control" placeholder="搜索动态类型" value="" name="searchMsg" id="search_input">
                                 </div>
-                                <button type="submit" class="btn btn-default">搜索</button>
+                                <button type="button" class="btn btn-default" id="search_btn" onclick="searchMessege()">搜索</button>
                             </form>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/onlineLove">在线表白</a></li>
+                                <li><a href="/send">状态发布</a></li>
                                 <li><a href="/friend">邀请好友</a></li>
                                 <li><a href="/hasName">实名认证</a></li>
                             </ul>
@@ -153,13 +153,12 @@
     //1、页面加载完成以后，直接去发送ajax请求,要到分页数据
     $(function (){
         //去首页
-        to_page(1);
+        to_page();
     });
 
-    function to_page(pn){
+    function to_page(){
         $.get(
             "comments",
-            "pn="+pn,
             function (data){
                 console.log(data);
             }
@@ -172,6 +171,22 @@
         var url = "http://localhost:8080" + href;
         alert("复制此 "+url+" 链接以分享");
         $("#show_messege").removeAttr();
+    }
+
+    //搜索
+    function searchMessege() {
+        var searchKeyWord = $("#search_input").val();
+        $.get(
+            "searchMsg",
+            "keyword="+searchKeyWord,
+            function (data) {
+                if(data.code == 100){
+                    window.location.href = "/toSearch";
+                }else if(data.code == 200){
+                    alert("没有找到匹配此关键字的数据");
+                }
+            }
+        )
     }
 
 

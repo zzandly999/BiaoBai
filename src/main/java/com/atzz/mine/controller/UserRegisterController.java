@@ -37,14 +37,13 @@ public class UserRegisterController {
     public String toIndex(){
         return "mine";
     }
-
     @RequestMapping("/whoSeeMe")
     public String toWhoSeeMe(){
         return "whoSeeMe";
     }
-    @RequestMapping("/iSee")
-    public String toiSee(){
-        return "iSee";
+    @RequestMapping("/mySend")
+    public String toMySend(){
+        return "mySend";
     }
     @RequestMapping("/blackFan")
     public String toBlackFan(){
@@ -158,5 +157,7 @@ public class UserRegisterController {
             return Msg.success();
         }
     }
+
+
 
 }

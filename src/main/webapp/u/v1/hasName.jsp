@@ -23,6 +23,7 @@
 <body>
 
 <div class="container">
+<%--    导航栏--%>
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar navbar-inverse">
@@ -42,7 +43,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="/whoSeeMe">谁看过我</a></li>
-                            <li><a href="/iSee">我看过谁</a></li>
+                            <li><a href="/mySend">我的发布</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">反馈 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -72,8 +73,53 @@
             </nav>
         </div>
     </div>
+<%--认证界面--%>
+    <div class="row">
+        <div >
+            <form class="form-inline">
+                <div class="col-xs-4">
+                   真实姓名 <input type="text" class="form-control" placeholder="真实姓名">
+                </div>
+                <div class="col-xs-4">
+                   学校 <input type="text" class="form-control" placeholder="Text input">
+                </div>
+                <div class="col-xs-4">
+                   寝室楼 <input type="text" class="form-control" placeholder="Text input">
+                </div>
+                <div class="col-xs-4">
+                   年龄&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="form-control" placeholder="Text input">
+                </div>
+                <div class="col-xs-4">
+                   学院 <input type="text" class="form-control" placeholder="Text input">
+                </div>
+                <div class="col-xs-4">
+                   寝室号 <input type="text" class="form-control" placeholder="Text input">
+                </div>
+                <div class="col-xs-4">
+                   导师&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="form-control" placeholder="Text input">
+                </div>
+                <div class="col-xs-4">
+                   学号 <input type="text" class="form-control" placeholder="9位学号">
+                </div>
+                <div class="col-xs-4">
+                   职业&nbsp;&nbsp;&nbsp; <input type="text" class="form-control" placeholder="Text input">
+                </div>
+                <div class="col-md-12" align="center">
+                   <input type="button" class="form-control"value="认证">
+                </div>
+            </form>
+        </div>
+    </div>
 
 </div>
+
+<script type="text/javascript">
+
+    function hasName() {
+
+    }
+
+</script>
 
 </body>
 </html>

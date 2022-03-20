@@ -42,7 +42,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="/whoSeeMe">谁看过我</a></li>
-                            <li><a href="/iSee">我看过谁</a></li>
+                            <li><a href="/mySend">我的发布</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">反馈 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
