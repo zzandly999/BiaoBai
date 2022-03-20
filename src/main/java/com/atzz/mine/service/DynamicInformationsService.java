@@ -56,7 +56,7 @@ public class DynamicInformationsService {
         }
         DynamicInformations dynamicInformations1 = new DynamicInformations(null, TimeUtils.currentTime(new Date()),TimeUtils.currentTime(new Date())
         ,null,null,null,null,url,dynamicInformations.getType(),null,null,null,
-                dynamicInformations.getComment(),"/images/ca.jpg", userRegister.getId());
+                dynamicInformations.getComment(),"/images/ca.jpg", null);
         dynamicInformationsMapper.insertSelective(dynamicInformations1);
         return true;
     }
